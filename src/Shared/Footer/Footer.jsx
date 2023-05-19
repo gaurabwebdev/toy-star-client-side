@@ -17,8 +17,8 @@ const Footer = () => {
           </Link>
 
           <p className="mx-3 pr-6 ">
-            A kids toy shop is a store that specializes in selling toys and
-            games designed specifically for children.
+            toySTAR is a store that specializes in selling toys and games
+            designed specifically for children.
           </p>
           <ul className="">
             <li className="my-3 flex items-center gap-3">

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../public/logo.png";
 
 const Header = () => {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <>
       {/* TOP BAR STARTS */}
@@ -31,37 +32,82 @@ const Header = () => {
             </div>
           </Link>
         </div>
-        <div className="flex">
-          <div className="flex-none mr-5">
-            <ul className="flex items-center gap-4  px-1">
-              <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                <Link>
-                  <p>Home</p>
-                </Link>
-              </li>
-              <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                <Link>
-                  <p>All Toys</p>
-                </Link>
-              </li>
-              <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                <Link>
-                  <p>My Toys</p>
-                </Link>
-              </li>
-              <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                <Link>
-                  <p>Add A Toy</p>
-                </Link>
-              </li>
-              <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                <Link>
-                  <p>Blogs</p>
-                </Link>
-              </li>
-            </ul>
+        <div className="flex flex-row-reverse lg:flex-row">
+          <div className="flex-none lg:mr-5 relative">
+            {showMenu ? (
+              <>
+                <ul className="absolute -top-8 right-0 w-[50vw] bg-gray-300 flex flex-col items-center gap-4 p-5 rounded">
+                  <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                    <Link>
+                      <p>Home</p>
+                    </Link>
+                  </li>
+                  <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                    <Link>
+                      <p>All Toys</p>
+                    </Link>
+                  </li>
+                  <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                    <Link>
+                      <p>My Toys</p>
+                    </Link>
+                  </li>
+                  <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                    <Link>
+                      <p>Add A Toy</p>
+                    </Link>
+                  </li>
+                  <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                    <Link>
+                      <p>Blogs</p>
+                    </Link>
+                  </li>
+                </ul>
+              </>
+            ) : (
+              <ul className="hidden lg:flex items-center gap-4 px-1">
+                <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                  <Link>
+                    <p>Home</p>
+                  </Link>
+                </li>
+                <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                  <Link>
+                    <p>All Toys</p>
+                  </Link>
+                </li>
+                <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                  <Link>
+                    <p>My Toys</p>
+                  </Link>
+                </li>
+                <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                  <Link>
+                    <p>Add A Toy</p>
+                  </Link>
+                </li>
+                <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                  <Link>
+                    <p>Blogs</p>
+                  </Link>
+                </li>
+              </ul>
+            )}
           </div>
-          <div>
+          <div className="flex items-center">
+            {!showMenu && (
+              <div onClick={() => setShowMenu(!showMenu)}>
+                <img
+                  className="mx-3 lg:hidden w-10 h-10 cursor-pointer"
+                  src={`${
+                    showMenu
+                      ? "https://i.ibb.co/QXbKPFQ/close.png"
+                      : "https://i.ibb.co/c3j6zSX/menu.png"
+                  }`}
+                  alt="bar-icon"
+                />
+              </div>
+            )}
             <img
               className="w-10 h-10 cursor-pointer"
               src="https://i.ibb.co/Yhn8Q8H/user.png"
