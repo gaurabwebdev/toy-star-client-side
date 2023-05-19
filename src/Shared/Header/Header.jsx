@@ -25,7 +25,9 @@ const Header = () => {
           <Link to={"/"}>
             <div className="flex items-center">
               <img className="w-20 h-20" src={logo} alt="site-logo" />
-              <p className="text-2xl font-bold ">toySTAR</p>
+              <p className="text-2xl font-bold  font-Righteous">
+                toy<span className="text-red-500">STAR</span>
+              </p>
             </div>
           </Link>
         </div>
@@ -61,7 +63,7 @@ const Header = () => {
           </div>
           <div>
             <img
-              className="w-10 h-10"
+              className="w-10 h-10 cursor-pointer"
               src="https://i.ibb.co/Yhn8Q8H/user.png"
               alt="user-picture"
             />
