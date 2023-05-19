@@ -5,7 +5,7 @@ import logo from "../../../public/logo.png";
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <>
+    <div>
       {/* TOP BAR STARTS */}
       <div className="navbar bg-base-300 h-10 p-3">
         <p className="mx-auto">
@@ -36,7 +36,7 @@ const Header = () => {
           <div className="flex-none lg:mr-5 relative">
             {showMenu ? (
               <>
-                <ul className="absolute -top-8 right-0 w-[50vw] bg-gray-300 flex flex-col items-center gap-4 p-5 rounded">
+                <ul className="lg:hidden absolute -top-8 right-0 w-[50vw] bg-gray-300 flex flex-col items-center gap-4 p-5 rounded">
                   <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
                     <Link>
                       <p>Home</p>
@@ -117,7 +117,7 @@ const Header = () => {
         </div>
       </div>
       {/* Navbar Ends */}
-    </>
+    </div>
   );
 };
 
