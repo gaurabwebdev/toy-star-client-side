@@ -7,8 +7,8 @@ const Header = () => {
   return (
     <div>
       {/* TOP BAR STARTS */}
-      <div className="navbar bg-base-300 h-10 p-3">
-        <p className="mx-auto">
+      <div className="navbar bg-base-300 h-10 p-3 flex justify-between">
+        <p className="">
           Get 35% off for
           <Link>
             <p className="hover:text-red-500 transition duration-150 ease-out hover:ease-in underline mx-1">
@@ -17,6 +17,14 @@ const Header = () => {
           </Link>
           - 2023
         </p>
+        <div>
+          <Link to={"/login"}>
+            <button className="btn btn-outline btn-error ">Login</button>
+          </Link>
+          <Link to={"/signup"}>
+            <button className="btn btn-error ml-2 ">Sign Up</button>
+          </Link>
+        </div>
       </div>
       {/* TOP BAR ENDS */}
 
