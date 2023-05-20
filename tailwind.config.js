@@ -6,6 +6,9 @@ export default {
     fontFamily: {
       Righteous: ["cursive"],
     },
+    backgroundImage: {
+      "hero-image": "url('https://i.ibb.co/8bc9VJC/hero-image.jpg')",
+    },
   },
   plugins: [require("daisyui")],
 };
