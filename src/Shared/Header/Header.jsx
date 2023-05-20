@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../public/logo.png";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
   return (
     <div>
@@ -55,16 +57,21 @@ const Header = () => {
                       <p>All Toys</p>
                     </Link>
                   </li>
-                  <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                    <Link>
-                      <p>My Toys</p>
-                    </Link>
-                  </li>
-                  <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                    <Link>
-                      <p>Add A Toy</p>
-                    </Link>
-                  </li>
+                  {user && (
+                    <>
+                      <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                        <Link>
+                          <p>My Toys</p>
+                        </Link>
+                      </li>
+                      <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                        <Link>
+                          <p>Add A Toy</p>
+                        </Link>
+                      </li>
+                    </>
+                  )}
+
                   <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
                     <Link>
                       <p>Blogs</p>
@@ -84,16 +91,20 @@ const Header = () => {
                     <p>All Toys</p>
                   </Link>
                 </li>
-                <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                  <Link>
-                    <p>My Toys</p>
-                  </Link>
-                </li>
-                <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                  <Link>
-                    <p>Add A Toy</p>
-                  </Link>
-                </li>
+                {user && (
+                  <>
+                    <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                      <Link>
+                        <p>My Toys</p>
+                      </Link>
+                    </li>
+                    <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
+                      <Link>
+                        <p>Add A Toy</p>
+                      </Link>
+                    </li>
+                  </>
+                )}
                 <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
                   <Link>
                     <p>Blogs</p>
@@ -116,11 +127,13 @@ const Header = () => {
                 />
               </div>
             )}
-            <img
-              className="w-10 h-10 cursor-pointer"
-              src="https://i.ibb.co/Yhn8Q8H/user.png"
-              alt="user-picture"
-            />
+            {user && (
+              <img
+                className="w-10 h-10 cursor-pointer"
+                src="https://i.ibb.co/Yhn8Q8H/user.png"
+                alt="user-picture"
+              />
+            )}
           </div>
         </div>
       </div>
