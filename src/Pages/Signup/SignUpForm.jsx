@@ -1,11 +1,43 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
+  const { signup, auth } = useContext(AuthContext);
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photo_url = form.photo.value;
+    console.log(name, email, photo_url, password);
+    signup(email, password)
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photo_url,
+        })
+          .then(() => {
+            console.log("Profile Updated");
+            navigate("/");
+          })
+          .then((error) => {
+            console.log(error);
+          });
+      })
+      .then((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       <p className="text-3xl font-semibold mb-5">Create Account</p>
-      <form className="">
+      <form onSubmit={handleSignUp}>
         <div>
           <input
             type="text"

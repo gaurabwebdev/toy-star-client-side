@@ -4,8 +4,15 @@ import logo from "../../../public/logo.png";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .then((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       {/* TOP BAR STARTS */}
@@ -20,12 +27,20 @@ const Header = () => {
           - 2023
         </p>
         <div>
-          <Link to={"/login"}>
-            <button className="btn btn-outline btn-error ">Login</button>
-          </Link>
-          <Link to={"/signup"}>
-            <button className="btn btn-error ml-2 ">Sign Up</button>
-          </Link>
+          {!user ? (
+            <>
+              <Link to={"/login"}>
+                <button className="btn btn-outline btn-error ">Login</button>
+              </Link>
+              <Link to={"/signup"}>
+                <button className="btn btn-error ml-2 ">Sign Up</button>
+              </Link>
+            </>
+          ) : (
+            <button onClick={handleLogout} className="btn btn-error ml-2 ">
+              Log Out
+            </button>
+          )}
         </div>
       </div>
       {/* TOP BAR ENDS */}
@@ -99,7 +114,7 @@ const Header = () => {
                       </Link>
                     </li>
                     <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                      <Link>
+                      <Link to={"/addtoy"}>
                         <p>Add A Toy</p>
                       </Link>
                     </li>
@@ -130,7 +145,9 @@ const Header = () => {
             {user && (
               <img
                 className="w-10 h-10 cursor-pointer"
-                src="https://i.ibb.co/Yhn8Q8H/user.png"
+                src={`${
+                  user ? user.photoURL : "https://i.ibb.co/Yhn8Q8H/user.png"
+                }`}
                 alt="user-picture"
               />
             )}

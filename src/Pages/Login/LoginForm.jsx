@@ -1,21 +1,41 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    login(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        navigate("/");
+      })
+      .then((error) => {
+        console.log(error);
+      });
+  };
   return (
     <>
       <p className="text-3xl font-semibold">Login ! ! !</p>
-      <form className="">
+      <form onSubmit={handleLogin}>
         <div>
           <input
             type="email"
             placeholder="Your Email"
             className="input input-bordered input-error w-full mb-4"
+            name="email"
           />
           <input
             type="password"
             placeholder="Your Password"
             className="input input-bordered input-error w-full mb-4"
+            name="password"
           />
           <input className="btn btn-error w-full" type="submit" value="Login" />
         </div>

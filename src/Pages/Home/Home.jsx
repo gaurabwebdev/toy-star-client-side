@@ -2,7 +2,7 @@ import React from "react";
 import HeroBanner from "./HeroBanner";
 import FacilitySection from "./FacilitySection";
 import GalleryImage from "./GalleryImage";
-import CategorySection from "./CategorySection";
+import CategorySection from "./CategorySection/CategorySection";
 
 const Home = () => {
   return (
