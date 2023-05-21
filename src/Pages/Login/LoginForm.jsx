@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-
+import { ToastContainer, toast } from "react-toastify";
 const LoginForm = () => {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
   const location = useLocation();
+  console.log(location);
+  if (location.state?.from?.pathname) {
+    toast("Please Login First");
+  }
   const toTarget = location.state?.from?.pathname || "/";
   const handleLogin = (event) => {
     event.preventDefault();
@@ -64,6 +68,7 @@ const LoginForm = () => {
           </div>
         </div>
       </form>
+      <ToastContainer />
     </>
   );
 };

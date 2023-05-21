@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const SignUpForm = () => {
       .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
+        toast("Account Created Succesfully");
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: photo_url,
@@ -92,6 +94,7 @@ const SignUpForm = () => {
           </div>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

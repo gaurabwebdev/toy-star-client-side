@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 const ToyCard = ({ toyDetails }) => {
   const location = useLocation();
@@ -20,7 +21,7 @@ const ToyCard = ({ toyDetails }) => {
         <p className="py-6 max-w-lg">
           {toyDetails.details || toyDetails.description}
         </p>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mb-2">
           <div>
             <p>Seller: {toyDetails.sellerName || toyDetails.seller_name}</p>
           </div>
@@ -30,16 +31,23 @@ const ToyCard = ({ toyDetails }) => {
         </div>
         <div className="flex  items-center gap-3">
           <div>
-            <p>Price: {toyDetails.price}</p>
+            <p>Price: ${toyDetails.price}</p>
           </div>
           <div>
             <p>
               Quantity: {toyDetails.quantity || toyDetails.available_quantity}
             </p>
           </div>
-          <div>
-            <p>Rating: {toyDetails.rating}</p>
-          </div>
+          {toyDetails.sku_id ? (
+            <div>
+              <p> SKU: {toyDetails.sku_id} </p>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+        <div>
+          <ReactStars size={30} value={toyDetails.rating} edit={false} />
         </div>
         <button className="btn btn-danger my-5">Contact Seller</button>
       </div>

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
 
 const AddToy = () => {
   const { user } = useContext(AuthContext);
@@ -35,7 +36,12 @@ const AddToy = () => {
       body: JSON.stringify(userToy),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast("Toy Added");
+        }
+      });
   };
   return (
     <div>
@@ -101,7 +107,7 @@ const AddToy = () => {
                       type="email"
                       placeholder="seller email"
                       className="input input-bordered"
-                      value={user.email}
+                      defaultValue={user.email}
                       name="sellerEmail"
                     />
                   </div>
@@ -179,6 +185,7 @@ const AddToy = () => {
                   <button className="btn btn-error">Add Toy</button>
                 </div>
               </form>
+              <ToastContainer />
             </div>
           </div>
         </div>

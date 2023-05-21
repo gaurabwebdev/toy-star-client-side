@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const UserToyTable = ({ userToys }) => {
   const [currentUserToys, setCurrentUserToys] = useState([...userToys]);
@@ -29,7 +30,12 @@ const UserToyTable = ({ userToys }) => {
       body: JSON.stringify(updatedInfo),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          console.log(data);
+          toast("Updated Successfully");
+        }
+      });
   };
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/usertoys?delete=${id}`)
@@ -38,6 +44,7 @@ const UserToyTable = ({ userToys }) => {
         if (data.deletedCount > 0) {
           const remainingToys = currentUserToys.filter((toy) => toy._id !== id);
           setCurrentUserToys(remainingToys);
+          toast("Toy Deleted Successfully!");
         }
       });
   };
@@ -171,6 +178,7 @@ const UserToyTable = ({ userToys }) => {
           </div>
         </div>
       </>
+      <ToastContainer />
     </div>
   );
 };

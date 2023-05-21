@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 const CarCard = ({ carinfo }) => {
   const { toy_name, price, rating, picture_url, _id } = carinfo;
@@ -14,8 +15,10 @@ const CarCard = ({ carinfo }) => {
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title">{toy_name}</h2>
-        <p>{price}</p>
-        <p>{rating}</p>
+        <p>${price}</p>
+        <div>
+          <ReactStars size={30} value={rating} edit={false} />
+        </div>
         <div className="card-actions">
           <Link to={`/alltoys/${_id}`}>
             <button className="btn btn-primary">View Details</button>
