@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import "./CategorySection.css";
 import CarCard from "../CarCard/CarCard";
 
@@ -20,7 +19,9 @@ const CategorySection = () => {
       <div>
         <Tabs>
           <TabList>
-            <Tab>Racing Car</Tab>
+            <Tab onClick={() => setCurrentCategory("racing car")}>
+              Racing Car
+            </Tab>
             <Tab onClick={() => setCurrentCategory("medical vehicle")}>
               Medical Vehicle
             </Tab>
@@ -35,33 +36,41 @@ const CategorySection = () => {
           <TabPanel>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {cars &&
-                cars.map((car) => (
-                  <CarCard key={car._id} carinfo={car}></CarCard>
-                ))}
+                cars
+                  .slice(0, 3)
+                  .map((car) => (
+                    <CarCard key={car._id} carinfo={car}></CarCard>
+                  ))}
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="grid grid-cols-1  lg:grid-cols-3 gap-3">
+              {cars &&
+                cars
+                  .slice(0, 3)
+                  .map((car) => (
+                    <CarCard key={car._id} carinfo={car}></CarCard>
+                  ))}
             </div>
           </TabPanel>
           <TabPanel>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {cars &&
-                cars.map((car) => (
-                  <CarCard key={car._id} carinfo={car}></CarCard>
-                ))}
+                cars
+                  .slice(0, 3)
+                  .map((car) => (
+                    <CarCard key={car._id} carinfo={car}></CarCard>
+                  ))}
             </div>
           </TabPanel>
           <TabPanel>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {cars &&
-                cars.map((car) => (
-                  <CarCard key={car._id} carinfo={car}></CarCard>
-                ))}
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-              {cars &&
-                cars.map((car) => (
-                  <CarCard key={car._id} carinfo={car}></CarCard>
-                ))}
+                cars
+                  .slice(0, 3)
+                  .map((car) => (
+                    <CarCard key={car._id} carinfo={car}></CarCard>
+                  ))}
             </div>
           </TabPanel>
         </Tabs>

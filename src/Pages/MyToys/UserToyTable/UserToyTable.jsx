@@ -1,7 +1,12 @@
 import { React, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const UserToyTable = ({ userToys }) => {
   const [currentUserToys, setCurrentUserToys] = useState([...userToys]);
+  const location = useLocation();
+  // console.log(userToys);
+  // console.log(currentUserToys);
+  console.log(location);
   const [targetedToy, setTargetedToy] = useState({});
   const handleEdit = (id) => {
     console.log(id);
@@ -51,13 +56,18 @@ const UserToyTable = ({ userToys }) => {
             <th className="text-center">Rating</th>
             <th className="text-center">Quantity</th>
             <th className="text-center">Details</th>
-            <th className="text-center">Update/Delete</th>
+
+            {location.pathname === "/mytoys" && (
+              <>
+                <th className="text-center">Update/Delete</th>
+              </>
+            )}
           </tr>
         </thead>
         <tbody>
           {/* rows */}
 
-          {currentUserToys.map((toy, index) => (
+          {currentUserToys?.map((toy, index) => (
             <>
               <tr key={toy._id}>
                 <td className="text-center">{index + 1}</td>
@@ -78,28 +88,38 @@ const UserToyTable = ({ userToys }) => {
                 <td className="text-center">{toy.price}</td>
                 <td className="text-center">{toy.rating}</td>
                 <td className="text-center">{toy.quantity}</td>
-                <td className="text-center">{toy.details.slice(0, 25)}</td>
+                {location.pathname === "/mytoys" && (
+                  <>
+                    <td className="text-center">{toy.details?.slice(0, 25)}</td>
+                    <td>
+                      <div className="flex justify-center items-center gap-2">
+                        <label htmlFor="my-modal">
+                          <img
+                            htmlFor="my-modal"
+                            onClick={() => handleEdit(toy._id)}
+                            className="w-6 h-6 cursor-pointer"
+                            src="https://i.ibb.co/wLzNPGN/edit.png"
+                            alt="edit-icon"
+                          />
+                        </label>
 
-                <td>
-                  <div className="flex justify-center items-center gap-2">
-                    <label htmlFor="my-modal">
-                      <img
-                        htmlFor="my-modal"
-                        onClick={() => handleEdit(toy._id)}
-                        className="w-6 h-6 cursor-pointer"
-                        src="https://i.ibb.co/wLzNPGN/edit.png"
-                        alt="edit-icon"
-                      />
-                    </label>
-
-                    <img
-                      onClick={() => handleDelete(toy._id)}
-                      className="w-6 h-6 cursor-pointer"
-                      src="https://i.ibb.co/CvT5nks/delete.png"
-                      alt="delete icon"
-                    />
-                  </div>
-                </td>
+                        <img
+                          onClick={() => handleDelete(toy._id)}
+                          className="w-6 h-6 cursor-pointer"
+                          src="https://i.ibb.co/CvT5nks/delete.png"
+                          alt="delete icon"
+                        />
+                      </div>
+                    </td>
+                  </>
+                )}
+                {location.pathname === "/alltoys" && (
+                  <td className="text-center">
+                    <Link>
+                      <button className="btn btn-danger">View</button>
+                    </Link>
+                  </td>
+                )}
               </tr>
             </>
           ))}

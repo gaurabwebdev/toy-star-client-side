@@ -3,7 +3,7 @@ import React from "react";
 const CarCard = ({ carinfo }) => {
   const { toy_name, price, rating, picture_url } = carinfo;
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card w-full bg-base-100 shadow-xl">
       <figure className="px-10 pt-10">
         <img
           src={picture_url}

@@ -14,11 +14,10 @@ const MyToys = () => {
         .then((data) => setUserToys(data));
     };
     fetchMyToys();
-  }, [userToys]);
+  }, []);
   return (
     <div>
-      <p>My Toys</p>
-
+      <h1 className="text-5xl font-bold mb-10 text-center mt-10">My Toys</h1>
       <UserToyTable userToys={userToys}></UserToyTable>
     </div>
   );
