@@ -1,12 +1,40 @@
 import { React, useState } from "react";
 
 const UserToyTable = ({ userToys }) => {
-  const [updateToyInfo, setUpdateToyInfo] = useState(false);
+  const [currentUserToys, setCurrentUserToys] = useState([...userToys]);
+  const [targetedToy, setTargetedToy] = useState({});
   const handleEdit = (id) => {
     console.log(id);
+    const findToy = userToys.find((toy) => toy._id === id);
+    setTargetedToy(findToy);
+  };
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const price = form.toyprice.value;
+    const quantity = form.quantity.value;
+    const details = form.details.value;
+    const updatedInfo = { _id: targetedToy._id, price, quantity, details };
+    console.log(updatedInfo);
+    fetch("http://localhost:5000/usertoys", {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
   const handleDelete = (id) => {
-    console.log(id);
+    fetch(`http://localhost:5000/usertoys?delete=${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          const remainingToys = currentUserToys.filter((toy) => toy._id !== id);
+          setCurrentUserToys(remainingToys);
+        }
+      });
   };
   return (
     <div className="overflow-x-auto">
@@ -29,7 +57,7 @@ const UserToyTable = ({ userToys }) => {
         <tbody>
           {/* rows */}
 
-          {userToys.map((toy, index) => (
+          {currentUserToys.map((toy, index) => (
             <>
               <tr key={toy._id}>
                 <td className="text-center">{index + 1}</td>
@@ -57,7 +85,7 @@ const UserToyTable = ({ userToys }) => {
                     <label htmlFor="my-modal">
                       <img
                         htmlFor="my-modal"
-                        onClick={() => setUpdateToyInfo(true)}
+                        onClick={() => handleEdit(toy._id)}
                         className="w-6 h-6 cursor-pointer"
                         src="https://i.ibb.co/wLzNPGN/edit.png"
                         alt="edit-icon"
@@ -78,30 +106,50 @@ const UserToyTable = ({ userToys }) => {
         </tbody>
       </table>
       <>
-        {updateToyInfo && (
-          <div className="relative">
-            <input type="checkbox" id="my-modal" className="modal-toggle" />
-            <div className="modal">
-              <div className="modal-box">
-                <h3 className="font-bold text-lg">
-                  Congratulations random Internet user!
-                </h3>
-                <p className="py-4">
-                  You have been selected for a chance to get one year of
-                  subscription to use Wikipedia for free!
-                </p>
-                <div className="modal-action">
-                  <label
-                    htmlFor="my-modal"
-                    className="btn rounded-full absolute top-2 right-2"
-                  >
-                    X
-                  </label>
+        <div className="relative">
+          <input type="checkbox" id="my-modal" className="modal-toggle" />
+          <div className="modal">
+            <div className="modal-box">
+              <form onSubmit={handleUpdate}>
+                <div className="py-5 px-10">
+                  <input
+                    type="text"
+                    placeholder="Toy Price"
+                    className="input input-bordered input-error w-full mb-4"
+                    name="toyprice"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Quantity"
+                    className="input input-bordered input-error w-full mb-4"
+                    name="quantity"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Toy Details"
+                    className="input input-bordered input-error w-full mb-4"
+                    name="details"
+                  />
+                  <div className="modal-action">
+                    <input
+                      className="btn btn-error w-full"
+                      type="submit"
+                      value="Update"
+                    />
+                  </div>
                 </div>
+              </form>
+              <div className="modal-action">
+                <label
+                  htmlFor="my-modal"
+                  className="btn rounded-full absolute top-2 right-2"
+                >
+                  X
+                </label>
               </div>
             </div>
           </div>
-        )}
+        </div>
       </>
     </div>
   );

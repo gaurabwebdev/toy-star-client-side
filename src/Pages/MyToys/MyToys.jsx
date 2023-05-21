@@ -14,8 +14,7 @@ const MyToys = () => {
         .then((data) => setUserToys(data));
     };
     fetchMyToys();
-  }, []);
-  console.log(userToys);
+  }, [userToys]);
   return (
     <div>
       <p>My Toys</p>
