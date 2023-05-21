@@ -115,7 +115,7 @@ const UserToyTable = ({ userToys }) => {
                 )}
                 {location.pathname === "/alltoys" && (
                   <td className="text-center">
-                    <Link>
+                    <Link to={`/alltoys/${toy._id}`}>
                       <button className="btn btn-danger">View</button>
                     </Link>
                   </td>
