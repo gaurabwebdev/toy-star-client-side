@@ -27,6 +27,15 @@ const AddToy = () => {
       details,
     };
     console.log(userToy);
+    fetch("http://localhost:5000/usertoys", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userToy),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
   return (
     <div>

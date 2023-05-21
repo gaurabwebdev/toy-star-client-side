@@ -12,6 +12,7 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [alltoys, setAllToys] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/alltoys")
@@ -35,10 +36,12 @@ const AuthProvider = ({ children }) => {
     login,
     logOut,
     auth,
+    loading,
   };
   useEffect(() => {
     const unsuscribe = onAuthStateChanged(auth, (loggedUser) => {
       setUser(loggedUser);
+      setLoading(false);
       console.log(loggedUser);
     });
     return () => {

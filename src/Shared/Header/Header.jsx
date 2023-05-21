@@ -75,7 +75,7 @@ const Header = () => {
                   {user && (
                     <>
                       <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                        <Link>
+                        <Link to={"/mytoys"}>
                           <p>My Toys</p>
                         </Link>
                       </li>
@@ -109,7 +109,7 @@ const Header = () => {
                 {user && (
                   <>
                     <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
-                      <Link>
+                      <Link to={"/mytoys"}>
                         <p>My Toys</p>
                       </Link>
                     </li>
