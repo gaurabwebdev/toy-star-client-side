@@ -1,12 +1,13 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import ToyCard from "../../Shared/ToyCard/ToyCard";
 
-const SingleToys = ({ params }) => {
+const SingleToys = () => {
   const toyDetails = useLoaderData();
   console.log(toyDetails);
   return (
     <div>
-      <p>SingleToys</p>
+      <ToyCard toyDetails={toyDetails}></ToyCard>
     </div>
   );
 };

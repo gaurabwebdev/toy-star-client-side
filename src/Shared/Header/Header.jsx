@@ -146,13 +146,18 @@ const Header = () => {
               </div>
             )}
             {user && (
-              <img
-                className="w-10 h-10 cursor-pointer"
-                src={`${
-                  user ? user.photoURL : "https://i.ibb.co/Yhn8Q8H/user.png"
-                }`}
-                alt="user-picture"
-              />
+              <div
+                data-tip={user?.displayName}
+                className="tooltip tooltip-bottom"
+              >
+                <img
+                  className="w-10 h-10 cursor-pointer tooltip"
+                  src={`${
+                    user ? user.photoURL : "https://i.ibb.co/Yhn8Q8H/user.png"
+                  }`}
+                  alt="user-picture"
+                />
+              </div>
             )}
           </div>
         </div>
