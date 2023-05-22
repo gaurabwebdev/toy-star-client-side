@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
+import PageTitle from "../../Shared/PageTitle/PageTitle";
 
 const AddToy = () => {
   const { user } = useContext(AuthContext);
@@ -45,6 +46,7 @@ const AddToy = () => {
   };
   return (
     <div>
+      <PageTitle />
       <div className="my-20">
         <div className="hero-content flex-col lg:flex-row">
           <div className="text-center w-full lg:w-1/2 lg:text-left">
@@ -122,9 +124,7 @@ const AddToy = () => {
                       className="select w-full max-w-xs input input-bordered"
                       name="sub_category"
                     >
-                      <option disabled selected>
-                        Select Category
-                      </option>
+                      <option defaultValue>Select Category</option>
                       <option>Racing Car</option>
                       <option>Medical Vehicle</option>
                       <option>Remote Car</option>

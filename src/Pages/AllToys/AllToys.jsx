@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserToyTable from "../MyToys/UserToyTable/UserToyTable";
+import PageTitle from "../../Shared/PageTitle/PageTitle";
 
 const AllToys = () => {
   const [usersToys, setUsersToys] = useState([]);
@@ -14,6 +15,7 @@ const AllToys = () => {
   console.log(usersToys);
   return (
     <div>
+      <PageTitle />
       <h1 className="text-5xl font-bold mb-10 text-center mt-10">
         All Added Toys
       </h1>

@@ -16,7 +16,7 @@ const ContactSection = () => {
         </h1>
       </div>
       <div>
-        <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="hero-content flex-col lg:flex-row-reverse ">
           <div className="text-center lg:text-left w-full md:w-1/2">
             <h1 className="text-4xl font-bold">Let's Hear From You</h1>
             <p className="py-6">

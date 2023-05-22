@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import UserToyTable from "./UserToyTable/UserToyTable";
+import PageTitle from "../../Shared/PageTitle/PageTitle";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,7 @@ const MyToys = () => {
   console.log(userToys);
   return (
     <div>
+      <PageTitle />
       <h1 className="text-5xl font-bold mb-10 text-center mt-10">My Toys</h1>
       <UserToyTable userToys={userToys}></UserToyTable>
     </div>
