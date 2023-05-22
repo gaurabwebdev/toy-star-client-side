@@ -62,7 +62,6 @@ const UserToyTable = ({ userToys }) => {
             <th className="text-center">Seller Name & Email</th>
             <th className="text-center">Sub Category</th>
             <th className="text-center">Price</th>
-            <th className="text-center">Rating</th>
             <th className="text-center">Quantity</th>
             <th className="text-center">Details</th>
 
@@ -94,8 +93,8 @@ const UserToyTable = ({ userToys }) => {
                   </div>
                 </td>
                 <td className="text-center">{toy.sub_category}</td>
-                <td className="text-center">{toy.price}</td>
-                <td className="text-center">{toy.rating}</td>
+                <td className="text-center">${toy.price}</td>
+
                 <td className="text-center">{toy.quantity}</td>
                 {location.pathname === "/mytoys" && (
                   <>

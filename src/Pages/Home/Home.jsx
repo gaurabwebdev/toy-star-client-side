@@ -3,6 +3,7 @@ import HeroBanner from "./HeroBanner";
 import FacilitySection from "./FacilitySection";
 import GalleryImage from "./GalleryImage";
 import CategorySection from "./CategorySection/CategorySection";
+import ContactSection from "./Contact/ContactSection";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <FacilitySection />
       <GalleryImage />
       <CategorySection />
+      <ContactSection />
     </div>
   );
 };

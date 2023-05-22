@@ -15,7 +15,7 @@ const AllToys = () => {
   return (
     <div>
       <h1 className="text-5xl font-bold mb-10 text-center mt-10">
-        All Added Toys{" "}
+        All Added Toys
       </h1>
       <UserToyTable userToys={usersToys}></UserToyTable>
     </div>
