@@ -24,7 +24,7 @@ const Header = () => {
           Get 35% off for
           <Link>
             <p className="hover:text-red-500 transition duration-150 ease-out hover:ease-in underline mx-1">
-              Summer Collection
+              New Arrivals
             </p>
           </Link>
           - 2023

@@ -15,6 +15,7 @@ const MyToys = () => {
     };
     fetchMyToys();
   }, []);
+  console.log(userToys);
   return (
     <div>
       <h1 className="text-5xl font-bold mb-10 text-center mt-10">My Toys</h1>

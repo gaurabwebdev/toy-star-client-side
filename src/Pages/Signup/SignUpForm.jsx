@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
-  const { signup, auth } = useContext(AuthContext);
+  const { signup, auth, googleSignIn } = useContext(AuthContext);
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -35,6 +35,17 @@ const SignUpForm = () => {
       .then((error) => {
         console.log(error);
       });
+  };
+
+  const handleGoogleSignUp = () => {
+    googleSignIn()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        toast("Signed In Successfully!");
+        navigate(toTarget);
+      })
+      .then((error) => console.log(error));
   };
   return (
     <div>
@@ -85,6 +96,7 @@ const SignUpForm = () => {
               <div className="flex items-center gap-3">
                 <span className="font-semibold">Sign UP With</span>
                 <img
+                  onClick={handleGoogleSignUp}
                   className="w-10 h-10 mx-auto my-2 cursor-pointer"
                   src="https://i.ibb.co/pxC49zN/google.png"
                   alt="gooogle"

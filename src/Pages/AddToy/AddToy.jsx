@@ -97,6 +97,7 @@ const AddToy = () => {
                       placeholder="seller name"
                       className="input input-bordered"
                       name="sellerName"
+                      defaultValue={user?.displayName}
                     />
                   </div>
                   <div className="form-control w-full">

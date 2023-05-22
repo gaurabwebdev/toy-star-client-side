@@ -1,13 +1,14 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const UserToyTable = ({ userToys }) => {
-  const [currentUserToys, setCurrentUserToys] = useState([...userToys]);
+  const [currentUserToys, setCurrentUserToys] = useState([]);
+  useEffect(() => {
+    setCurrentUserToys(userToys);
+  }, [userToys]);
   const location = useLocation();
-  // console.log(userToys);
-  // console.log(currentUserToys);
-  console.log(location);
+
   const [targetedToy, setTargetedToy] = useState({});
   const handleEdit = (id) => {
     console.log(id);
@@ -48,6 +49,7 @@ const UserToyTable = ({ userToys }) => {
         }
       });
   };
+  console.log({ currentUserToys });
   return (
     <div className="overflow-x-auto">
       <table className="table table-zebra w-full">

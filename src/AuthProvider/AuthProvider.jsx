@@ -1,9 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
@@ -14,6 +16,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [alltoys, setAllToys] = useState([]);
+  const googleProvider = new GoogleAuthProvider();
   useEffect(() => {
     fetch("http://localhost:5000/alltoys")
       .then((res) => res.json())
@@ -29,6 +32,10 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     return signOut(auth);
   };
+
+  const googleSignIn = () => {
+    return signInWithPopup(auth, googleProvider);
+  };
   const authInfo = {
     alltoys,
     user,
@@ -37,6 +44,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     auth,
     loading,
+    googleSignIn,
   };
   useEffect(() => {
     const unsuscribe = onAuthStateChanged(auth, (loggedUser) => {

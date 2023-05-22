@@ -4,13 +4,14 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login, googleSignIn } = useContext(AuthContext);
   const location = useLocation();
   console.log(location);
+
+  const toTarget = location.state?.from?.pathname || "/";
   if (location.state?.from?.pathname) {
     toast("Please Login First");
   }
-  const toTarget = location.state?.from?.pathname || "/";
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -25,6 +26,17 @@ const LoginForm = () => {
       .then((error) => {
         console.log(error);
       });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        toast("Signed In Successfully!");
+        navigate(toTarget);
+      })
+      .then((error) => console.log(error));
   };
   return (
     <>
@@ -59,6 +71,7 @@ const LoginForm = () => {
               <div className="flex items-center gap-3">
                 <span className="font-semibold">Login With</span>
                 <img
+                  onClick={handleGoogleSignIn}
                   className="w-10 h-10 mx-auto my-2 cursor-pointer"
                   src="https://i.ibb.co/pxC49zN/google.png"
                   alt="gooogle"
