@@ -23,7 +23,7 @@ const UserToyTable = ({ userToys }) => {
     const details = form.details.value;
     const updatedInfo = { _id: targetedToy._id, price, quantity, details };
     console.log(updatedInfo);
-    fetch("http://localhost:5000/usertoys", {
+    fetch("https://khelaghor-server-site.vercel.app/usertoys", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -39,7 +39,7 @@ const UserToyTable = ({ userToys }) => {
       });
   };
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/usertoys?delete=${id}`)
+    fetch(`https://khelaghor-server-site.vercel.app/usertoys?delete=${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {

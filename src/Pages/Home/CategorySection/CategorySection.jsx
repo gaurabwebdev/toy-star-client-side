@@ -8,7 +8,9 @@ const CategorySection = () => {
   const [currentCategory, setCurrentCategory] = useState("racing car");
   const [cars, setCars] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/alltoys?category=${currentCategory}`)
+    fetch(
+      `https://khelaghor-server-site.vercel.app/alltoys?category=${currentCategory}`
+    )
       .then((res) => res.json())
       .then((data) => setCars(data));
   }, [currentCategory]);

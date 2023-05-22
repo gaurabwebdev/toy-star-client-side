@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 
 const PageTitle = () => {
   const location = useLocation();
-  console.log(location);
   return (
     <div>
       <h3 className="text-2xl font-semibold m-7">

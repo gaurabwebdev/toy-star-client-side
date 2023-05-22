@@ -8,9 +8,12 @@ const MyToys = () => {
   const [userToys, setUserToys] = useState([]);
   useEffect(() => {
     const fetchMyToys = () => {
-      fetch(`http://localhost:5000/usertoys?email=${user.email}`, {
-        method: "GET",
-      })
+      fetch(
+        `https://khelaghor-server-site.vercel.app/usertoys?email=${user.email}`,
+        {
+          method: "GET",
+        }
+      )
         .then((res) => res.json())
         .then((data) => setUserToys(data));
     };

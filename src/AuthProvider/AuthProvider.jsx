@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
   const [alltoys, setAllToys] = useState([]);
   const googleProvider = new GoogleAuthProvider();
   useEffect(() => {
-    fetch("http://localhost:5000/alltoys")
+    fetch("https://khelaghor-server-site.vercel.app/alltoys")
       .then((res) => res.json())
       .then((data) => setAllToys(data));
   }, []);

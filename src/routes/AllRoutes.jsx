@@ -42,7 +42,9 @@ const AllRoutes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/alltoys/${params.id}`),
+          fetch(
+            `https://khelaghor-server-site.vercel.app/alltoys/${params.id}`
+          ),
       },
       {
         path: "/usertoys/:id",
@@ -52,7 +54,9 @@ const AllRoutes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/usertoys/${params.id}`),
+          fetch(
+            `https://khelaghor-server-site.vercel.app/usertoys/${params.id}`
+          ),
       },
 
       {
@@ -74,13 +78,13 @@ const AllRoutes = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
-        loader: () => fetch("http://localhost:5000/blogs"),
+        loader: () => fetch("https://khelaghor-server-site.vercel.app/blogs"),
       },
       {
         path: "/blogs/:id",
         element: <SingleBlog />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/blogs/${params.id}`),
+          fetch(`https://khelaghor-server-site.vercel.app/blogs/${params.id}`),
       },
     ],
   },

@@ -29,7 +29,7 @@ const AddToy = () => {
       details,
     };
     console.log(userToy);
-    fetch("http://localhost:5000/usertoys", {
+    fetch("https://khelaghor-server-site.vercel.app/usertoys", {
       method: "POST",
       headers: {
         "content-type": "application/json",
