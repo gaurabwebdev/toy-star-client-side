@@ -11,6 +11,7 @@ import AllToys from "../Pages/AllToys/AllToys";
 import SingleToys from "../Pages/SingleToy/SingleToys";
 import Blogs from "../Pages/Blogs/Blogs";
 import SingleBlog from "../Pages/Blogs/SingleBlog";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const AllRoutes = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const AllRoutes = createBrowserRouter([
           fetch(`http://localhost:5000/blogs/${params.id}`),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
 

@@ -57,7 +57,9 @@ const UserToyTable = ({ userToys }) => {
         <thead>
           <tr>
             <th></th>
-            <th className="text-center">Photo</th>
+            {location.pathname === "/mytoys" && (
+              <th className="text-center">Photo</th>
+            )}
             <th className="text-center">Toy Name</th>
             <th className="text-center">Seller Name & Email</th>
             <th className="text-center">Sub Category</th>
@@ -79,13 +81,15 @@ const UserToyTable = ({ userToys }) => {
             <>
               <tr key={toy._id}>
                 <td className="text-center">{index + 1}</td>
-                <td>
-                  <img
-                    className="w-12 h-12"
-                    src={toy.photoURL}
-                    alt="toy photo"
-                  />
-                </td>
+                {location.pathname === "/mytoys" && (
+                  <td>
+                    <img
+                      className="w-12 h-12"
+                      src={toy.photoURL}
+                      alt="toy photo"
+                    />
+                  </td>
+                )}
                 <td className="text-center">{toy.toyName}</td>
                 <td className="text-center">
                   <div>

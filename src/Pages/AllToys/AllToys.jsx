@@ -5,7 +5,7 @@ const AllToys = () => {
   const [usersToys, setUsersToys] = useState([]);
   useEffect(() => {
     const fetchUsersToys = () => {
-      fetch("http://localhost:5000/usertoys")
+      fetch(`http://localhost:5000/usertoys?limit=20`)
         .then((res) => res.json())
         .then((data) => setUsersToys(data));
     };
