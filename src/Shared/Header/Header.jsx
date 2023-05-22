@@ -64,7 +64,7 @@ const Header = () => {
           <div className="flex-none lg:mr-5 relative">
             {showMenu ? (
               <>
-                <ul className="lg:hidden absolute -top-8 right-0 w-[50vw] bg-gray-300 flex flex-col items-center gap-4 p-5 rounded">
+                <ul className="lg:hidden absolute -top-8 right-0 w-[50vw]  bg-gray-300 flex flex-col items-center gap-4 p-5 rounded">
                   <li className="text-xl hover:text-red-500 transition duration-150 ease-out hover:ease-in">
                     <Link>
                       <p>Home</p>
