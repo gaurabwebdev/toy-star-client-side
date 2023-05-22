@@ -4,7 +4,6 @@ import ToyCard from "../../Shared/ToyCard/ToyCard";
 
 const SingleToys = () => {
   const toyDetails = useLoaderData();
-  console.log(toyDetails);
   return (
     <div>
       <ToyCard toyDetails={toyDetails}></ToyCard>

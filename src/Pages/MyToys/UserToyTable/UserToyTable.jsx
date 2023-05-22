@@ -11,7 +11,6 @@ const UserToyTable = ({ userToys }) => {
 
   const [targetedToy, setTargetedToy] = useState({});
   const handleEdit = (id) => {
-    console.log(id);
     const findToy = userToys.find((toy) => toy._id === id);
     setTargetedToy(findToy);
   };
@@ -22,7 +21,6 @@ const UserToyTable = ({ userToys }) => {
     const quantity = form.quantity.value;
     const details = form.details.value;
     const updatedInfo = { _id: targetedToy._id, price, quantity, details };
-    console.log(updatedInfo);
     fetch("https://khelaghor-server-site.vercel.app/usertoys", {
       method: "PUT",
       headers: {
@@ -33,7 +31,6 @@ const UserToyTable = ({ userToys }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
-          console.log(data);
           toast("Updated Successfully");
         }
       });
@@ -49,7 +46,6 @@ const UserToyTable = ({ userToys }) => {
         }
       });
   };
-  console.log({ currentUserToys });
   return (
     <div className="overflow-x-auto">
       <table className="table table-zebra w-full">

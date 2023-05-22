@@ -19,7 +19,6 @@ const MyToys = () => {
     };
     fetchMyToys();
   }, []);
-  console.log(userToys);
   return (
     <div>
       <PageTitle />

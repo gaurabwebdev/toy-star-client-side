@@ -6,7 +6,6 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const { login, googleSignIn } = useContext(AuthContext);
   const location = useLocation();
-  console.log(location);
 
   const toTarget = location.state?.from?.pathname || "/";
   if (location.state?.from?.pathname) {
@@ -20,7 +19,6 @@ const LoginForm = () => {
     login(email, password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
         navigate(toTarget);
       })
       .then((error) => {
@@ -32,8 +30,9 @@ const LoginForm = () => {
     googleSignIn()
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
-        toast("Signed In Successfully!");
+        if (loggedUser) {
+          toast("Signed In Successfully!");
+        }
         navigate(toTarget);
       })
       .then((error) => console.log(error));

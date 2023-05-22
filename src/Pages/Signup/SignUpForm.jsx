@@ -14,18 +14,18 @@ const SignUpForm = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photo_url = form.photo.value;
-    console.log(name, email, photo_url, password);
     signup(email, password)
       .then((result) => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
-        toast("Account Created Succesfully");
+        if (loggedInUser) {
+          toast("Account Created Succesfully");
+        }
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: photo_url,
         })
           .then(() => {
-            console.log("Profile Updated");
+            toast("Profile Updated");
             navigate("/");
           })
           .then((error) => {
@@ -41,9 +41,10 @@ const SignUpForm = () => {
     googleSignIn()
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
-        toast("Signed In Successfully!");
-        navigate(toTarget);
+        if (loggedUser) {
+          toast("Signed In Successfully!");
+        }
+        navigate("/");
       })
       .then((error) => console.log(error));
   };

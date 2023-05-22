@@ -12,7 +12,6 @@ const AllToys = () => {
     };
     fetchUsersToys();
   }, []);
-  console.log(usersToys);
   return (
     <div>
       <PageTitle />

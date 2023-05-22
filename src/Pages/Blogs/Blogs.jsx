@@ -5,7 +5,6 @@ import PageTitle from "../../Shared/PageTitle/PageTitle";
 
 const Blogs = () => {
   const blogs = useLoaderData();
-  console.log(blogs);
   return (
     <div>
       <PageTitle />

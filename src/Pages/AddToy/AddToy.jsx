@@ -28,7 +28,6 @@ const AddToy = () => {
       quantity,
       details,
     };
-    console.log(userToy);
     fetch("https://khelaghor-server-site.vercel.app/usertoys", {
       method: "POST",
       headers: {
@@ -38,7 +37,6 @@ const AddToy = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           toast("Toy Added");
         }

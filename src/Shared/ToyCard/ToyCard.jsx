@@ -4,7 +4,6 @@ import ReactStars from "react-rating-stars-component";
 
 const ToyCard = ({ toyDetails }) => {
   const location = useLocation();
-  console.log(location);
   return (
     <div className="flex flex-col lg:flex-row-reverse my-8 mx-12">
       <div className="w-full lg:w-1/2 lg:m-10">
